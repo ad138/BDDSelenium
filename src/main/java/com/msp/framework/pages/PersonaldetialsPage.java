@@ -27,23 +27,23 @@ public class PersonaldetialsPage extends TestBase {
 	@FindBy(xpath="//a[@title='Manage my personal information']")
 	public WebElement Manage_my_personal_information;
 	
-	@FindBy(xpath="// input[contains(@id,'1497:0')]")
+	@FindBy(xpath="//input[contains(@aria-required,'true')]")
 	public WebElement accountName;
-	@FindBy(xpath="// input[contains(@id,'1513:0')]")
+	@FindBy(xpath="(//input[contains(@type,'tel')])[1]")
 	public WebElement phoneNum;
-	@FindBy(xpath="// input[contains(@id,'1629:0')]")
+	@FindBy(xpath="(//input[contains(@data-interactive-lib-uid,'10')])[1]")
 	public WebElement accountNum;
-	@FindBy(xpath="// div[contains(@id,'1463:0')]")
+	@FindBy(xpath="(//div/a[contains(text(),'--None--')])[1]")
 	public WebElement ratingDD;
-	@FindBy(xpath="//textarea[contains(@id,'1945:0')]")
+	@FindBy(xpath="(//textarea[contains(@placeholder,'Billing Street')])[1]")
 	public WebElement billingAdd;
-	@FindBy(xpath="//textarea[contains(@id,'2348:0')]")
+	@FindBy(xpath="(//textarea[contains(@role,'textbox')])[3]")
 	public WebElement descriptionTxt;
-	@FindBy(xpath="//div[contains(@id,'2082:0')]")
+	@FindBy(xpath="(//div/a[contains(@href,'javascript:void(0);')])[5]")
 	public WebElement custPriorityDD;
-	@FindBy(xpath="//div[contains(@id,'2128:0')]")
+	@FindBy(xpath="(//div/a[contains(text(),'--None--')])[6]")
 	public WebElement slaDD;
-	@FindBy(xpath="//button[contains(@class,'slds-button slds-button--neutral uiButton--brand uiButton forceActionButton')]")
+	@FindBy(xpath="(//button/span[contains(text(),'Save')])[3]")
 	public WebElement accountSaveBtn;
 
 
@@ -71,7 +71,7 @@ public class PersonaldetialsPage extends TestBase {
 		this.Manage_my_personal_information.click();
 	}
 	//method to verify firstname field
-	 public void userDetails(String accountname,String phone,String accountnumber,String rating,String billingaddress,String customerpriority,String sla,String description)
+	 public void userDetails(String accountname,String phone,String accountnumber,String billingaddress,String description)
 	 {
 		 this.accountName.clear();
 		 this.accountName.sendKeys(accountname);
@@ -80,36 +80,28 @@ public class PersonaldetialsPage extends TestBase {
 		 this.accountNum.clear();
 		 this.accountNum.sendKeys(accountnumber);
 		 this.ratingDD.click();
-		 WebElement ratingDDList = driver.findElement(By.xpath("//li/a[contains(text(),"+rating+")]"));
+		 WebElement ratingDDList = driver.findElement(By.xpath("//li/a[contains(@title,'Hot')]"));
+		 System.out.println(ratingDDList);
 		 ratingDDList.click();
 		 this.billingAdd.sendKeys(billingaddress);
-		 this.custPriorityDD.click();
-		 WebElement custList = driver.findElement(By.xpath("//li/a[contains(text(),"+customerpriority+")]"));
-		 custList.click();
-		 this.slaDD.click();
-		 WebElement slaList = driver.findElement(By.xpath("//li/a[contains(text(),"+sla+")]"));
-		 slaList.click();
+//		 this.custPriorityDD.click();
+//		 WebElement custList = driver.findElement(By.xpath("//li/a[contains(@title,'Low')]"));
+//		 System.out.println(custList);
+//		 custList.click();
+//		 this.slaDD.click();
+//		 WebElement slaList = driver.findElement(By.xpath("//li/a[contains(@title,'Gold')]"));
+//		 System.out.println(slaList);
+//		 slaList.click();
 		 this.descriptionTxt.clear();
 		 this.descriptionTxt.sendKeys(description);
 
 	 }
-	
-		//method to verify change password  field
-		public void ChangePassword() throws IOException
-		 {		 
-		 textOldPassword.sendKeys(prop.getProperty("old_passwd"));
-		 textNewPassword.sendKeys(prop.getProperty("passwd"));	
-		 textConfirmation.sendKeys(prop.getProperty("confirmation"));
-			 
-		FileOutputStream fio= new FileOutputStream(System.getProperty("user.dir")+"\\src\\main\\java\\com\\msp\\framework\\config\\cofig.properties");
-		prop.setProperty("old_passwd", prop.getProperty("passwd"));
-		prop.store(fio, null);
-		fio.close();		 
-		 }
+
 		//method to click on Submit button
-		public void SaveAccountBtn()
-		{
-			this.accountSaveBtn.click();
+		public void SaveAccountBtn() {
+			if (this.accountSaveBtn.isDisplayed()) {
+				this.accountSaveBtn.click();
+			}
 		}
 				
 		//method to verify the message		

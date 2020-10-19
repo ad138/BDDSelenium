@@ -8,9 +8,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-/**
- * Created by Dhruba Deka  on 29/07/2019.
- */
 
 	public class TestBase {
 	

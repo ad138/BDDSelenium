@@ -45,10 +45,10 @@ public class LoginPage extends TestBase {
 	 {
 		 String title= driver.getTitle();
 		 System.out.println("Title is"+title);
-	     if(title.equals("HOME"))
-		{ System.out.println("Home - My Home Page is displaying");
+	     if(title.equals("Lightning Experience"))
+		{ System.out.println("Lightening experience Page is displaying");
 		}else
-		{ System.out.println("Home - My Home Page not is displaying ");
+		{ System.out.println("Lightening experience Page not is displaying ");
 		}
 	 }
 }

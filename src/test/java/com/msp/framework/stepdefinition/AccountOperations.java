@@ -8,38 +8,35 @@ import com.msp.framework.base.TestBase;
 
 import com.msp.framework.pages.AccountOperationsPage;
 
-/**
-	 * Created by Dhruba Deka  on 29/07/2019.
-	 */
 	public class AccountOperations extends  TestBase{
-		
+
 	 @When("^I click on AppLauncher link and searched Accounts$")
 	   public void i_click_on_AppLauncher_link_and_searched_Accounts() throws Exception
 	  {
-		  AccountOperationsPage orderpage = new AccountOperationsPage(driver);
-	     orderpage.Click_on_AppLauncherLinkSearchAccounts();
+		  AccountOperationsPage operation = new AccountOperationsPage(driver);
+		  operation.Click_on_AppLauncherLinkSearchAccounts();
 
 	  }
 	 
 	 @When("^I click on Back to your account button$")
 	    public void i_click_on_back_to_your_account_button() throws Exception
 	  {
-		  AccountOperationsPage orderpage = new AccountOperationsPage(driver);
-	       orderpage.Back_To_Myaccount();
+		  AccountOperationsPage operation = new AccountOperationsPage(driver);
+		  operation.Back_To_Myaccount();
 	    }
 
-	  @Then("^I directed to the Accounts page$")
+	  @Then("^I directed to the Accounts Home page$")
 	    public void i_directed_to_the_Accounts_page() throws Exception
 	    {
-			AccountOperationsPage orderpage = new AccountOperationsPage(driver);
-	        orderpage.AccountsPage(driver);
+			AccountOperationsPage operation = new AccountOperationsPage(driver);
+			operation.HomePage(driver);
 	    }
 
 	  @Then("^I add an account by clciking on new button$")
 	    public void i_add_an_account_by_clicking_on_new_button() throws Exception
 	   {
-		   AccountOperationsPage orderpage = new AccountOperationsPage(driver);
-		  orderpage.clickNewBtn(driver);
+		   AccountOperationsPage operation = new AccountOperationsPage(driver);
+		   operation.clickNewBtn(driver);
 	    }
 //
 //	   @Then("^I click on Proceed to checkout button from cart window$")

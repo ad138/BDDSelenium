@@ -21,7 +21,7 @@
 		
 		 @FindBy(xpath="//div[contains(@class,'slds-r5')]")
 		  public WebElement AppLauncherLink;
-		@FindBy(xpath="//input[contains(@id,'input-101')]")
+		@FindBy(xpath="//input[contains(@placeholder,'Search apps and items...')]")
 		public WebElement searchApps;
 		@FindBy(xpath="//p/b[contains(text(),'Accounts')]")
 		public WebElement AccountsLink;
@@ -87,31 +87,25 @@
 		 	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	      String title= driver.getTitle();
 		  System.out.println("Title is --- > "+title);
-		  if(title.equals("Accounts"))
+		  if(title.equals("Recently Viewed | Accounts | Salesforce"))
 		  { System.out.println("Page verified ");
 			}else
 		   {System.out.println("Page not available");
 		   }
 		 }
 
-	 //method to  verify the presence of purchase order in order history page
-	 public void VerifyPurchasOrder(WebDriver driver)
-			 {
-	      	String s = driver.findElement(By.xpath("//div[@class='box']")).getText();
-			String[] items = s.split("-");
-			String orderPlaced = items[5].substring(46, 55);
-			System.out.println("orderPlaced: "+orderPlaced);
-			driver.findElement(By.xpath("//a[@title='Back to orders']")).click();
-			String orderHistory =driver.findElement(By.xpath("//a[contains(text(),'"+orderPlaced+"')]")).getText();
-			System.out.println("orderHistory: "+orderHistory);
-			if(orderPlaced.equals(orderHistory))
-					{
-						 System.out.println("Purchase Order is Present in Order History Page ");
-					}	else
-					{
-						System.out.println("Purchase Order is not Present Order History Page");
-					}
-			  }
+		public void HomePage(WebDriver driver) throws InterruptedException
+		{
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			String title= driver.getTitle();
+			System.out.println("Title is --- > "+title);
+			if(title.equals("Home | Salesforce"))
+			{ System.out.println("Page verified ");
+			}else
+			{System.out.println("Page not available");
+			}
+		}
+
 	 
 		//method for Mouse Hover 
 		 public void  clickNewBtn(WebDriver driver )
@@ -126,116 +120,19 @@
 //		 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //		 driver.findElement(By.xpath("//span[text()='Add to cart']")).click();
 		 }		
-	 //method to verify  shopping cart summary page
-		 public void  Shop_CartSumyPage() {
-		 String bodyText = ShopCartSumyPage.getText();
-		 if(bodyText.equals("Your shopping cart"))
-		 { System.out.println("shopping cart summary page is  successfully displaying");
-		 }else
-		 { System.out.println("shopping cart summary page is not displaying");		 
-		 }
-	 	 }
-		//method to verify address section
-		public void  Address_Page() {
-		String bodyText = AddressesPage.getText();
-		if(bodyText.equals("Addresses"))
-		 {System.out.println("Addresses page is successfully displaying ");
-		 } else
-		 { System.out.println("Addresses Page is not displaying");
-		 }	  
-		 }
-	 // method to verify  to the shipping section
-	     public void  Shipping_Sectn() {
-		 String bodyText = ShippingSectn.getText();
-		 if(bodyText.equals("Shipping"))
-		 { System.out.println(" Shipping page is successfully displaying ");
-		 }else
-		{ System.out.println("Shipping page is  not displaying");
-		 }	  
-		 }				 	  	 
-		// method to verify  to the payment section
-		 public void  Payment_Sectn() {
-		 String bodyText = PaymentSectn.getText();
-		 if(bodyText.equals("Your payment method"))
-		 { System.out.println("Your payment method page is successfully displaying");
-		 }else
-		 { System.out.println("Your payment method page is  not displaying");
-		  }	  
-		 }			  	
-	   // method to verify order summary page
-		public void  Order_Sumry_Pg() {
-	    String bodyText = OrderSumryPg.getText();
-		 if(bodyText.equals("Bank-wire payment."))
-		{ System.out.println("Bank-wire payment section is successfully displaying");
-		}else
-		{ System.out.println("Bank-wire payment section is  not displaying");
-		}
-		}		
-		//method to verify order confirmation page
-		 public void  Ordertext() {
-		 String bodyText = YourOrder.getText();
-		  if(bodyText.equals("Your order on My Store is complete."))
-		 { System.out.println("Your order on My Store is complete page is successfully displaying");
-		 }else
-		 { System.out.println("Your order on My Store is complete page is not displaying");
-		 }
-		 }	
-		// method to verify Order history page
-		 public void  OrderHistory() {
-		 String bodyText = OrderHistory.getText();
-		 if(bodyText.equals("Order history"))
-		 { System.out.println("Order history page is successfully displaying");
-		 }else
-		 { System.out.println("Order history page is not displaying");
-		 }
-		 }
-		 //method for T-Shirts link	 
+
 		public void Click_on_AppLauncherLinkSearchAccounts()
 		{
-		this.AppLauncherLink.click();
+			if(this.AppLauncherLink.isDisplayed()) {
+				this.AppLauncherLink.click();
+			}
 		this.searchApps.sendKeys("Accounts");
 		if(this.AccountsLink.isDisplayed()){
 			this.AccountsLink.click();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		}
 		}
-		
-		//method for Proceed Checkout button from  cart window
-		public void Proceed_To_ChkOutBtn()
-		 {
-		 ((JavascriptExecutor)driver).executeScript("arguments[0].click();", ProceedToChkOutBtn);
- 		 }
-			
-    	//method for Proceed Checkout button cart from summary page
-	  	 public void Proceed_To_ChkOutBtn1()
-		{
-		this.ProceedToChkOutBtn1.click();
-		}
-		//method for Proceed to checkout button from address section
-		public void Proceed_To_ChkOutBtn2()
-		{
-		this.ProceedToChkOutBtn2.click();
-		}
-	     //method for Terms of service checkbox button shipping section
-		public void Click_On_Checkbox()
-		{
-		this.Checkbox.click();
-		}
-		//method for  checkout button shipping section
-		public void Proceed_To_ChkOutBtn3()
-		{
-		this.ProceedToChkOutBtn3.click();
-		}
-		//method for bank wire payment option
-		public void BankWirePayment_Tab()
-		{
-		this.BankWirePaymentTab.click();
-		}
-		//I click on confirm my order button
-		public void ConfirmOrder()
-		{
-		this.ConfirmOrderbtn.click();
-		}
-		//method for  Back to your account button
+
 		public void Back_To_Myaccount()
 		{
 		this.BackBtn.click();
